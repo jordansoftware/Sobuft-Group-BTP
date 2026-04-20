@@ -46,11 +46,15 @@ const SERVICES = [
   }
 ];
 
+const HERO_IMAGES = Array.from({ length: 8 }, (_, i) => `https://sobuftgroupbtp.com/hero/hero${i + 1}.jpg`);
+
 const PROJECTS = [
   {
     title: "Immeuble R+3 avec terrasse accessible",
     location: "Logpom, Douala",
     type: "Résidentiel",
+    image: "https://sobuftgroupbtp.com/projet-ngadeu/projet-ngadeu01.webp",
+    gallery: Array.from({ length: 24 }, (_, i) => `https://sobuftgroupbtp.com/projet-ngadeu/projet-ngadeu${String(i + 1).padStart(2, '0')}.webp`),
     fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala), consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
   },
   {
@@ -102,6 +106,15 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [modalContent, setModalContent] = useState<{ title: string; body: ReactNode } | null>(null);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+  const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0);
+  const [currentHeroImage, setCurrentHeroImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeroImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -245,9 +258,28 @@ export default function App() {
 
       {/* Hero Section */}
       <section id="accueil" className="relative h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-secondary">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(239,68,68,0.2)_0%,transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/60 to-transparent"></div>
+        <div className="absolute inset-0 z-0">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentHeroImage}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0"
+            >
+              <img 
+                src={HERO_IMAGES[currentHeroImage]} 
+                alt="Background" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </AnimatePresence>
+          {/* Overlays for readability */}
+          <div className="absolute inset-0 bg-secondary/60 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(239,68,68,0.1)_0%,transparent_50%)]"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20">
@@ -368,15 +400,25 @@ export default function App() {
                 viewport={{ once: true }}
                 onClick={() => {
                   setSelectedProjectIndex(i);
+                  setCurrentGalleryImageIndex(0);
                 }}
                 className="group relative overflow-hidden rounded-[2.5rem] bg-gray-900 aspect-[16/10] cursor-pointer"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary to-black flex items-center justify-center opacity-40 group-hover:opacity-60 transition-opacity">
-                  {project.type === "Résidentiel" ? <Building2 className="w-32 h-32 text-primary/30" /> : 
-                   project.type === "Commercial" ? <Building2 className="w-32 h-32 text-primary/30" /> :
-                   project.type === "Infrastructure" ? <Construction className="w-32 h-32 text-primary/30" /> :
-                   <HardHat className="w-32 h-32 text-primary/30" />}
-                </div>
+                {project.image ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary to-black flex items-center justify-center opacity-40 group-hover:opacity-60 transition-opacity">
+                    {project.type === "Résidentiel" ? <Building2 className="w-32 h-32 text-primary/30" /> : 
+                     project.type === "Commercial" ? <Building2 className="w-32 h-32 text-primary/30" /> :
+                     project.type === "Infrastructure" ? <Construction className="w-32 h-32 text-primary/30" /> :
+                     <HardHat className="w-32 h-32 text-primary/30" />}
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-10 flex flex-col justify-end">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="bg-primary text-[10px] uppercase font-black tracking-widest px-2 py-1 rounded">
@@ -715,47 +757,141 @@ export default function App() {
       <AnimatePresence>
         {selectedProjectIndex !== null && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-10 bg-secondary/95 backdrop-blur-2xl">
-              <div className="bg-white w-full max-w-4xl h-fit max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden relative p-8 md:p-16">
-                {/* Close Button */}
-                <button 
-                  onClick={() => setSelectedProjectIndex(null)}
-                  className="absolute top-8 right-8 z-20 w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-secondary hover:bg-gray-200 transition-all"
-                >
-                  <X className="w-6 h-6" />
-                </button>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className={`bg-white w-full h-full max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row relative ${PROJECTS[selectedProjectIndex].gallery ? 'max-w-6xl' : 'max-w-4xl'}`}
+            >
+              {/* Close Button Mobile */}
+              <button 
+                onClick={() => setSelectedProjectIndex(null)}
+                className="absolute top-6 right-6 z-20 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white md:hidden"
+              >
+                <X className="w-6 h-6" />
+              </button>
 
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="bg-primary/10 text-primary text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full">
-                      {PROJECTS[selectedProjectIndex].type}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs text-gray-400 font-bold uppercase tracking-widest">
-                      <MapPin className="w-3 h-3" /> {PROJECTS[selectedProjectIndex].location}
-                    </span>
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-black text-secondary leading-tight mb-10">{PROJECTS[selectedProjectIndex].title}</h2>
+              {/* Gallery Section */}
+              {PROJECTS[selectedProjectIndex].gallery && (
+                <div className="w-full md:w-3/5 h-[400px] md:h-full bg-gray-900 relative group/gallery">
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={PROJECTS[selectedProjectIndex].gallery[currentGalleryImageIndex]}
+                      src={PROJECTS[selectedProjectIndex].gallery[currentGalleryImageIndex]}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </AnimatePresence>
                   
-                  <div className="prose prose-lg text-gray-600 leading-relaxed mb-12">
-                    <p>{PROJECTS[selectedProjectIndex].fullDescription}</p>
-                  </div>
-
-                  {/* Navigation */}
-                  <div className="pt-8 border-t border-gray-100 flex items-center justify-between">
+                  {/* Gallery Nav Buttons */}
+                  <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none opacity-0 group-hover/gallery:opacity-100 transition-opacity">
                     <button 
-                      onClick={() => setSelectedProjectIndex((prev) => prev === 0 ? PROJECTS.length - 1 : prev! - 1)}
-                      className="flex items-center gap-3 text-secondary font-bold hover:text-primary transition-all"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentGalleryImageIndex((prev) => 
+                          prev === 0 ? PROJECTS[selectedProjectIndex!].gallery!.length - 1 : prev - 1
+                        );
+                      }}
+                      className="pointer-events-auto w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-all active:scale-95"
                     >
-                      <ChevronLeft /> Projet Précédent
+                      <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button 
-                      onClick={() => setSelectedProjectIndex((prev) => (prev! + 1) % PROJECTS.length)}
-                      className="flex items-center gap-3 text-secondary font-bold hover:text-primary transition-all"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentGalleryImageIndex((prev) => 
+                          (prev + 1) % PROJECTS[selectedProjectIndex!].gallery!.length
+                        );
+                      }}
+                      className="pointer-events-auto w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-all active:scale-95"
                     >
-                      Projet Suivant <ChevronRight />
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </div>
+
+                  {/* Gallery Indicators */}
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                    {PROJECTS[selectedProjectIndex].gallery.map((_, idx) => (
+                      <button 
+                        key={idx}
+                        onClick={() => setCurrentGalleryImageIndex(idx)}
+                        className={`h-1.5 rounded-full transition-all ${idx === currentGalleryImageIndex ? "w-8 bg-primary" : "w-2 bg-white/50 hover:bg-white"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Info Section */}
+              <div className="flex-1 p-8 md:p-12 overflow-y-auto flex flex-col">
+                <div className="flex justify-between items-start mb-10">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="bg-primary/10 text-primary text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full">
+                        {PROJECTS[selectedProjectIndex].type}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs text-gray-400 font-bold uppercase tracking-widest">
+                        <MapPin className="w-3 h-3" /> {PROJECTS[selectedProjectIndex].location}
+                      </span>
+                    </div>
+                    <h2 className="text-4xl font-black text-secondary leading-tight">{PROJECTS[selectedProjectIndex].title}</h2>
+                  </div>
+                  <button 
+                    onClick={() => setSelectedProjectIndex(null)}
+                    className="hidden md:flex w-12 h-12 bg-gray-50 rounded-full items-center justify-center text-gray-400 hover:text-secondary hover:bg-gray-100 transition-all"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                <div className="space-y-6 text-gray-600 leading-relaxed text-lg mb-12">
+                  <p>{PROJECTS[selectedProjectIndex].fullDescription}</p>
+                </div>
+
+                {/* Navigation Buttons */}
+                <div className="mt-auto pt-8 border-t border-gray-100 flex items-center justify-between gap-4">
+                  {/* Previous Project */}
+                  <div className="flex items-center gap-4">
+                    <button 
+                      onClick={() => {
+                        setSelectedProjectIndex((prev) => 
+                          prev === 0 ? PROJECTS.length - 1 : prev! - 1
+                        );
+                        setCurrentGalleryImageIndex(0);
+                      }}
+                      className="h-16 w-16 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all shadow-sm active:scale-95 group"
+                    >
+                      <ChevronLeft className="w-8 h-8 group-hover:-translate-x-1 transition-transform" />
+                    </button>
+                    <div className="text-left hidden sm:block">
+                      <p className="text-[10px] uppercase font-black tracking-widest text-gray-400 mb-1">Revenir au</p>
+                      <p className="text-sm font-bold text-secondary">Projet Précédent</p>
+                    </div>
+                  </div>
+
+                  {/* Next Project */}
+                  <div className="flex items-center gap-4">
+                    <div className="text-right hidden sm:block">
+                      <p className="text-[10px] uppercase font-black tracking-widest text-gray-400 mb-1">Passer au</p>
+                      <p className="text-sm font-bold text-secondary">Projet Suivant</p>
+                    </div>
+                    <button 
+                      onClick={() => {
+                        setSelectedProjectIndex((prev) => (prev! + 1) % PROJECTS.length);
+                        setCurrentGalleryImageIndex(0);
+                      }}
+                      className="h-16 w-16 bg-primary rounded-2xl flex items-center justify-center text-white hover:bg-secondary transition-all shadow-xl shadow-primary/20 active:scale-95 group"
+                    >
+                      <ArrowRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>
               </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
