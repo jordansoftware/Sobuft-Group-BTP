@@ -496,7 +496,7 @@ export default function App() {
               <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform"></div>
               <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-gray-100 shadow-2xl">
                 <img 
-                  src="https://github.com/jordansoftware/Sobuft-Group-BTP/blob/main/images/sobuft-ceo.png?raw=true" 
+                  src="/sobuft-ceo.png" 
                   alt="M. SONFACK THIERRY GREG - CEO SOBUFT GROUP BTP" 
                   className="w-full h-full object-cover transition-all duration-700"
                   referrerPolicy="no-referrer"
