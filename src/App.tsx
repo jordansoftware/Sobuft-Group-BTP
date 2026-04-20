@@ -570,9 +570,14 @@ export default function App() {
             Que ce soit pour une villa de luxe ou une infrastructure majeure, nos experts sont là pour vous conseiller gratuitement.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <button className="bg-secondary text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-black transition-all shadow-2xl flex items-center gap-3">
+            <a 
+              href="https://wa.me/237697671278" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-secondary text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-black transition-all shadow-2xl flex items-center gap-3 no-underline"
+            >
               <MessageSquare className="w-6 h-6" /> Discuter par WhatsApp
-            </button>
+            </a>
             <button className="bg-white text-primary px-10 py-5 rounded-full font-bold text-xl transition-all shadow-2xl">
               Être rappelé
             </button>
