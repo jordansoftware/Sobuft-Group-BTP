@@ -1,20 +1,20 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# SOBUFT GROUP BTP
 
-# Run and deploy your AI Studio app
+Site officiel de SOBUFT GROUP BTP, expert en construction, rénovation et génie civil au Cameroun.
 
-This contains everything you need to run your app locally.
+## À propos
 
-View your app in AI Studio: https://ai.studio/apps/26d76714-0fdf-42c4-8aa4-bc6cf37a40f7
+SOBUFT GROUP BTP est une entreprise leader dans le secteur du bâtiment et des travaux publics au Cameroun. Nous offrons des solutions intégrales pour tous vos projets de construction, garantissant solidité, respect des délais et transparence.
 
-## Run Locally
+## Services
 
-**Prerequisites:**  Node.js
+- Construction Immobilière
+- Génie Civil & TP
+- Rénovation & Design
+- Gestion de Projets
 
+## Contact
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **Siège Social** : Yaoundé, Cameroun
+- **Téléphone** : +237 671 939 281 / +237 697 671 278
+- **Email** : contact@sobuftgroupbtp.com

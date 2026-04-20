@@ -186,9 +186,12 @@ export default function App() {
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
-                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20 rotate-3">
-                    <Construction className="text-white w-10 h-10 -rotate-3" />
-                  </div>
+            <img 
+              src="https://sobuftgroupbtp.com/images-source-sobuft/sobuft-png-logo.png" 
+              alt="SOBUFT GROUP Logo" 
+              className="h-16 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
             <span className={`text-xl font-bold tracking-tight ${scrolled ? "text-secondary" : "text-white"}`}>
               SOBUFT GROUP BTP<span className="text-primary">.</span>
             </span>
@@ -413,8 +416,13 @@ export default function App() {
               className="md:col-span-5 relative group"
             >
               <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform"></div>
-              <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-secondary flex items-center justify-center shadow-2xl">
-                <Users className="w-48 h-48 text-primary opacity-20" />
+              <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] shadow-2xl">
+                <img 
+                  src="https://sobuftgroupbtp.com/images-source-sobuft/sobuft-ceo.png" 
+                  alt="M. SONFACK THIERRY GREG - CEO SOBUFT GROUP BTP" 
+                  className="w-full h-full object-cover transition-all duration-700"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </motion.div>
 
@@ -629,9 +637,12 @@ export default function App() {
           <div className="grid md:grid-cols-4 gap-12 pb-16 border-b border-white/10">
               <div className="col-span-1 md:col-span-1">
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0">
-                    <Construction className="text-white w-8 h-8" />
-                  </div>
+                  <img 
+                    src="https://sobuftgroupbtp.com/images-source-sobuft/sobuft-png-logo.png" 
+                    alt="SOBUFT GROUP Logo" 
+                    className="h-16 w-auto object-contain"
+                    referrerPolicy="no-referrer"
+                  />
                   <span className="text-xl font-bold tracking-tight">SOBUFT GROUP BTP<span className="text-primary">.</span></span>
                 </div>
               <p className="text-white/60 text-sm leading-relaxed mb-6">
