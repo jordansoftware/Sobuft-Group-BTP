@@ -24,14 +24,14 @@ import {
 import { useState, useEffect, ReactNode } from "react";
 
 const HERO_IMAGES = [
-  "/backgroung image/514248545_122143491086629174_3492141920777430729_n.jpg",
-  "/backgroung image/514279220_122143490882629174_9203876550505968773_n.jpg",
-  "/backgroung image/515272354_122143491254629174_3820960591852898881_n.jpg",
-  "/backgroung image/515372738_122143490834629174_8354720094165081348_n.jpg",
-  "/backgroung image/515497337_122143491212629174_2018886495881619765_n.jpg",
-  "/backgroung image/515501303_122143491296629174_8119425052991247689_n.jpg",
-  "/backgroung image/515641037_122143491380629174_4435182432365546108_n.jpg",
-  "/backgroung image/516403708_122143490744629174_5418293427554918584_n.jpg"
+  "/images/hero/514248545_122143491086629174_3492141920777430729_n.jpg",
+  "/images/hero/514279220_122143490882629174_9203876550505968773_n.jpg",
+  "/images/hero/515272354_122143491254629174_3820960591852898881_n.jpg",
+  "/images/hero/515372738_122143490834629174_8354720094165081348_n.jpg",
+  "/images/hero/515497337_122143491212629174_2018886495881619765_n.jpg",
+  "/images/hero/515501303_122143491296629174_8119425052991247689_n.jpg",
+  "/images/hero/515641037_122143491380629174_4435182432365546108_n.jpg",
+  "/images/hero/516403708_122143490744629174_5418293427554918584_n.jpg"
 ];
 
 const SERVICES = [
@@ -65,8 +65,8 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
     gallery: [
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-      "/backgroung image/516403708_122143490744629174_5418293427554918584_n.jpg",
-      "/backgroung image/515372738_122143490834629174_8354720094165081348_n.jpg"
+      "/images/hero/516403708_122143490744629174_5418293427554918584_n.jpg",
+      "/images/hero/515372738_122143490834629174_8354720094165081348_n.jpg"
     ],
     fullDescription: "Une villa balnéaire d'exception alliant design minimaliste et ouverture sur l'océan. Ce projet a mis l'accent sur l'utilisation de matériaux locaux et la durabilité environnementale. Sobuft Group BTP a réalisé ici une véritable synthèse entre luxe et respect de la nature environnante."
   },
@@ -74,22 +74,22 @@ const PROJECTS = [
     title: "Immeuble R+3 avec terrasse accessible",
     location: "Logpom, Douala",
     type: "Résidentiel",
-    image: "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.17.40.webp",
+    image: "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.17.40.webp",
     gallery: [
-      "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.14.52.webp",
-      "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.16.58.webp",
-      "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.17.06.webp",
-      "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.17.40.webp",
-      "/Projet Ngadeu/IMG_0584.JPG.webp",
-      "/Projet Ngadeu/IMG_2285.JPG.webp",
-      "/Projet Ngadeu/IMG_4377.JPG.webp",
-      "/Projet Ngadeu/c2a606d3-f586-4055-b5bc-16e6e4ff52cf.webp",
-      "/Projet Ngadeu/1d1e912b-a5b1-4351-b4d8-0af11a4d14ff.webp",
-      "/Projet Ngadeu/889ddf0d-9ff0-4c42-bcad-8f2895b59815.webp",
-      "/Projet Ngadeu/0c9a66ba-b2ab-4326-b787-e578a61a64dd.webp",
-      "/Projet Ngadeu/192ceec6-c39a-44a6-bb85-720f5d58b086.webp",
-      "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.38.18.jpeg",
-      "/Projet Ngadeu/WhatsApp Image 2026-04-19 at 12.38.17.jpeg"
+      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.14.52.webp",
+      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.16.58.webp",
+      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.17.06.webp",
+      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.17.40.webp",
+      "/images/project-ngadeu/IMG_0584.JPG.webp",
+      "/images/project-ngadeu/IMG_2285.JPG.webp",
+      "/images/project-ngadeu/IMG_4377.JPG.webp",
+      "/images/project-ngadeu/c2a606d3-f586-4055-b5bc-16e6e4ff52cf.webp",
+      "/images/project-ngadeu/1d1e912b-a5b1-4351-b4d8-0af11a4d14ff.webp",
+      "/images/project-ngadeu/889ddf0d-9ff0-4c42-bcad-8f2895b59815.webp",
+      "/images/project-ngadeu/0c9a66ba-b2ab-4326-b787-e578a61a64dd.webp",
+      "/images/project-ngadeu/192ceec6-c39a-44a6-bb85-720f5d58b086.webp",
+      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.38.18.jpeg",
+      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.38.17.jpeg"
     ],
     fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala), consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
   },
@@ -100,8 +100,8 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
     gallery: [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
-      "/backgroung image/514248545_122143491086629174_3492141920777430729_n.jpg",
-      "/backgroung image/514279220_122143490882629174_9203876550505968773_n.jpg"
+      "/images/hero/514248545_122143491086629174_3492141920777430729_n.jpg",
+      "/images/hero/514279220_122143490882629174_9203876550505968773_n.jpg"
     ],
     fullDescription: "La Résidence Emergence est un complexe résidentiel de luxe situé au cœur de Bastos. Ce projet phare de Sobuft Group BTP combine élégance architecturale et confort moderne. Il comprend 12 appartements spacieux équipés de systèmes intelligents, un rooftop panoramique et une infrastructure de sécurité conforme aux standards internationaux."
   },
@@ -112,8 +112,8 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
     gallery: [
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
-      "/backgroung image/515272354_122143491254629174_3820960591852898881_n.jpg",
-      "/backgroung image/515497337_122143491212629174_2018886495881619765_n.jpg"
+      "/images/hero/515272354_122143491254629174_3820960591852898881_n.jpg",
+      "/images/hero/515497337_122143491212629174_2018886495881619765_n.jpg"
     ],
     fullDescription: "Ce centre commercial de 5 étages redéfinit le shopping à Douala. Situé stratégiquement à Akwa, il offre des espaces modulables pour les commerces de détail, des bureaux d'affaires et une aire de restauration. Notre expertise en génie civil a permis de relever les défis de sol spécifiques à la zone littorale."
   },
@@ -124,8 +124,8 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=1000&auto=format&fit=crop",
     gallery: [
       "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=1000&auto=format&fit=crop",
-      "/backgroung image/515501303_122143491296629174_8119425052991247689_n.jpg",
-      "/backgroung image/515641037_122143491380629174_4435182432365546108_n.jpg"
+      "/images/hero/515501303_122143491296629174_8119425052991247689_n.jpg",
+      "/images/hero/515641037_122143491380629174_4435182432365546108_n.jpg"
     ],
     fullDescription: "Un projet d'envergure nationale consistant en la réfection structurelle complète du pont historique sur la Sanaga. Nous avons utilisé des techniques de renforcement en composites et une protection anticorrosion avancée pour assurer la pérennité de cet axe vital pour l'économie camerounaise."
   }
@@ -538,9 +538,9 @@ export default function App() {
           {/* Other Team Members Grid (Optional placeholders) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-24 border-t border-gray-100">
             {[
-              { name: "Direction Technique", role: "Ingénierie & Design", img: "/backgroung image/514248545_122143491086629174_3492141920777430729_n.jpg" },
-              { name: "Service Client", role: "Relations Partenaires", img: "/backgroung image/515372738_122143490834629174_8354720094165081348_n.jpg" },
-              { name: "Logistique BTP", role: "Gestion Chantiers", img: "/backgroung image/516403708_122143490744629174_5418293427554918584_n.jpg" },
+              { name: "Direction Technique", role: "Ingénierie & Design", img: "/images/hero/514248545_122143491086629174_3492141920777430729_n.jpg" },
+              { name: "Service Client", role: "Relations Partenaires", img: "/images/hero/515372738_122143490834629174_8354720094165081348_n.jpg" },
+              { name: "Logistique BTP", role: "Gestion Chantiers", img: "/images/hero/516403708_122143490744629174_5418293427554918584_n.jpg" },
               { name: "Assistance Projets", role: "Suivi Administratif", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=400&auto=format&fit=crop" }
             ].map((member, i) => (
               <motion.div 
