@@ -23,17 +23,6 @@ import {
 } from "lucide-react";
 import { useState, useEffect, ReactNode } from "react";
 
-const HERO_IMAGES = [
-  "/images/hero/514248545_122143491086629174_3492141920777430729_n.jpg",
-  "/images/hero/514279220_122143490882629174_9203876550505968773_n.jpg",
-  "/images/hero/515272354_122143491254629174_3820960591852898881_n.jpg",
-  "/images/hero/515372738_122143490834629174_8354720094165081348_n.jpg",
-  "/images/hero/515497337_122143491212629174_2018886495881619765_n.jpg",
-  "/images/hero/515501303_122143491296629174_8119425052991247689_n.jpg",
-  "/images/hero/515641037_122143491380629174_4435182432365546108_n.jpg",
-  "/images/hero/516403708_122143490744629174_5418293427554918584_n.jpg"
-];
-
 const SERVICES = [
   {
     title: "Construction Immobilière",
@@ -59,75 +48,34 @@ const SERVICES = [
 
 const PROJECTS = [
   {
-    title: "Villa Moderne Kribi",
-    location: "Cité des Plages, Kribi",
-    type: "Luxe",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-      "/images/hero/516403708_122143490744629174_5418293427554918584_n.jpg",
-      "/images/hero/515372738_122143490834629174_8354720094165081348_n.jpg"
-    ],
-    fullDescription: "Une villa balnéaire d'exception alliant design minimaliste et ouverture sur l'océan. Ce projet a mis l'accent sur l'utilisation de matériaux locaux et la durabilité environnementale. Sobuft Group BTP a réalisé ici une véritable synthèse entre luxe et respect de la nature environnante."
-  },
-  {
     title: "Immeuble R+3 avec terrasse accessible",
     location: "Logpom, Douala",
     type: "Résidentiel",
-    image: "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.17.40.webp",
-    gallery: [
-      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.14.52.webp",
-      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.16.58.webp",
-      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.17.06.webp",
-      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.17.40.webp",
-      "/images/project-ngadeu/IMG_0584.JPG.webp",
-      "/images/project-ngadeu/IMG_2285.JPG.webp",
-      "/images/project-ngadeu/IMG_4377.JPG.webp",
-      "/images/project-ngadeu/c2a606d3-f586-4055-b5bc-16e6e4ff52cf.webp",
-      "/images/project-ngadeu/1d1e912b-a5b1-4351-b4d8-0af11a4d14ff.webp",
-      "/images/project-ngadeu/889ddf0d-9ff0-4c42-bcad-8f2895b59815.webp",
-      "/images/project-ngadeu/0c9a66ba-b2ab-4326-b787-e578a61a64dd.webp",
-      "/images/project-ngadeu/192ceec6-c39a-44a6-bb85-720f5d58b086.webp",
-      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.38.18.jpeg",
-      "/images/project-ngadeu/WhatsApp Image 2026-04-19 at 12.38.17.jpeg"
-    ],
     fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala), consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
   },
   {
     title: "Résidence Emergence",
     location: "Bastos, Yaoundé",
     type: "Résidentiel",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
-      "/images/hero/514248545_122143491086629174_3492141920777430729_n.jpg",
-      "/images/hero/514279220_122143490882629174_9203876550505968773_n.jpg"
-    ],
     fullDescription: "La Résidence Emergence est un complexe résidentiel de luxe situé au cœur de Bastos. Ce projet phare de Sobuft Group BTP combine élégance architecturale et confort moderne. Il comprend 12 appartements spacieux équipés de systèmes intelligents, un rooftop panoramique et une infrastructure de sécurité conforme aux standards internationaux."
   },
   {
     title: "Centre Commercial Littoral",
     location: "Akwa, Douala",
     type: "Commercial",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
-      "/images/hero/515272354_122143491254629174_3820960591852898881_n.jpg",
-      "/images/hero/515497337_122143491212629174_2018886495881619765_n.jpg"
-    ],
     fullDescription: "Ce centre commercial de 5 étages redéfinit le shopping à Douala. Situé stratégiquement à Akwa, il offre des espaces modulables pour les commerces de détail, des bureaux d'affaires et une aire de restauration. Notre expertise en génie civil a permis de relever les défis de sol spécifiques à la zone littorale."
   },
   {
     title: "Pont de la Sanaga (Rénovation)",
     location: "Edéa",
     type: "Infrastructure",
-    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=1000&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=1000&auto=format&fit=crop",
-      "/images/hero/515501303_122143491296629174_8119425052991247689_n.jpg",
-      "/images/hero/515641037_122143491380629174_4435182432365546108_n.jpg"
-    ],
     fullDescription: "Un projet d'envergure nationale consistant en la réfection structurelle complète du pont historique sur la Sanaga. Nous avons utilisé des techniques de renforcement en composites et une protection anticorrosion avancée pour assurer la pérennité de cet axe vital pour l'économie camerounaise."
+  },
+  {
+    title: "Villa Moderne Kribi",
+    location: "Cité des Plages, Kribi",
+    type: "Luxe",
+    fullDescription: "Une villa balnéaire d'exception alliant design minimaliste et ouverture sur l'océan. Ce projet a mis l'accent sur l'utilisation de matériaux locaux et la durabilité environnementale. Sobuft Group BTP a réalisé ici une véritable synthèse entre luxe et respect de la nature environnante."
   }
 ];
 
@@ -154,19 +102,6 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [modalContent, setModalContent] = useState<{ title: string; body: ReactNode } | null>(null);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
-  const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0);
-  const [currentHeroImage, setCurrentHeroImage] = useState(0);
-
-  useEffect(() => {
-    document.title = "SOBUFT GROUP BTP";
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHeroImage((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -251,12 +186,9 @@ export default function App() {
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <img 
-              src="https://github.com/jordansoftware/Sobuft-Group-BTP/blob/main/images/sobuft%20logo%20png.png?raw=true" 
-              alt="SOBUFT GROUP Logo" 
-              className="h-14 w-auto object-contain"
-              referrerPolicy="no-referrer"
-            />
+                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20 rotate-3">
+                    <Construction className="text-white w-10 h-10 -rotate-3" />
+                  </div>
             <span className={`text-xl font-bold tracking-tight ${scrolled ? "text-secondary" : "text-white"}`}>
               SOBUFT GROUP BTP<span className="text-primary">.</span>
             </span>
@@ -310,20 +242,8 @@ export default function App() {
 
       {/* Hero Section */}
       <section id="accueil" className="relative h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.img 
-              key={HERO_IMAGES[currentHeroImage]}
-              src={HERO_IMAGES[currentHeroImage]} 
-              alt="BTP Cameroon Engineering" 
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1.05 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
-              className="w-full h-full object-cover blur-[3px]"
-              referrerPolicy="no-referrer"
-            />
-          </AnimatePresence>
+        <div className="absolute inset-0 z-0 bg-secondary">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(239,68,68,0.2)_0%,transparent_50%)]"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/60 to-transparent"></div>
         </div>
 
@@ -445,16 +365,15 @@ export default function App() {
                 viewport={{ once: true }}
                 onClick={() => {
                   setSelectedProjectIndex(i);
-                  setCurrentGalleryImageIndex(0);
                 }}
                 className="group relative overflow-hidden rounded-[2.5rem] bg-gray-900 aspect-[16/10] cursor-pointer"
               >
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
-                  referrerPolicy="no-referrer"
-                />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary to-black flex items-center justify-center opacity-40 group-hover:opacity-60 transition-opacity">
+                  {project.type === "Résidentiel" ? <Building2 className="w-32 h-32 text-primary/30" /> : 
+                   project.type === "Commercial" ? <Building2 className="w-32 h-32 text-primary/30" /> :
+                   project.type === "Infrastructure" ? <Construction className="w-32 h-32 text-primary/30" /> :
+                   <HardHat className="w-32 h-32 text-primary/30" />}
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-10 flex flex-col justify-end">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="bg-primary text-[10px] uppercase font-black tracking-widest px-2 py-1 rounded">
@@ -494,13 +413,8 @@ export default function App() {
               className="md:col-span-5 relative group"
             >
               <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform"></div>
-              <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-gray-100 shadow-2xl">
-                <img 
-                  src="/sobuft-ceo.png" 
-                  alt="M. SONFACK THIERRY GREG - CEO SOBUFT GROUP BTP" 
-                  className="w-full h-full object-cover transition-all duration-700"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-secondary flex items-center justify-center shadow-2xl">
+                <Users className="w-48 h-48 text-primary opacity-20" />
               </div>
             </motion.div>
 
@@ -538,10 +452,10 @@ export default function App() {
           {/* Other Team Members Grid (Optional placeholders) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-24 border-t border-gray-100">
             {[
-              { name: "Direction Technique", role: "Ingénierie & Design", img: "/images/hero/514248545_122143491086629174_3492141920777430729_n.jpg" },
-              { name: "Service Client", role: "Relations Partenaires", img: "/images/hero/515372738_122143490834629174_8354720094165081348_n.jpg" },
-              { name: "Logistique BTP", role: "Gestion Chantiers", img: "/images/hero/516403708_122143490744629174_5418293427554918584_n.jpg" },
-              { name: "Assistance Projets", role: "Suivi Administratif", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=400&auto=format&fit=crop" }
+              { name: "Direction Technique", role: "Ingénierie & Design", icon: Building2 },
+              { name: "Service Client", role: "Relations Partenaires", icon: Users },
+              { name: "Logistique BTP", role: "Gestion Chantiers", icon: Construction },
+              { name: "Assistance Projets", role: "Suivi Administratif", icon: MessageSquare }
             ].map((member, i) => (
               <motion.div 
                 key={member.name}
@@ -551,8 +465,8 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="relative overflow-hidden rounded-3xl aspect-square mb-6 bg-gray-50 border border-gray-100">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+                <div className="relative overflow-hidden rounded-3xl aspect-square mb-6 bg-secondary flex items-center justify-center border border-gray-100/10">
+                  <member.icon className="w-20 h-20 text-primary opacity-20" />
                 </div>
                 <h4 className="font-bold text-secondary">{member.name}</h4>
                 <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">{member.role}</p>
@@ -713,16 +627,13 @@ export default function App() {
       <footer className="bg-secondary pt-20 pb-10 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 pb-16 border-b border-white/10">
-            <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-3 mb-8">
-                <img 
-                  src="https://github.com/jordansoftware/Sobuft-Group-BTP/blob/main/images/sobuft%20logo%20png.png?raw=true" 
-                  alt="SOBUFT GROUP Logo" 
-                  className="h-16 w-auto object-contain brightness-0 invert"
-                  referrerPolicy="no-referrer"
-                />
-                <span className="text-xl font-bold tracking-tight">SOBUFT GROUP BTP<span className="text-primary">.</span></span>
-              </div>
+              <div className="col-span-1 md:col-span-1">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0">
+                    <Construction className="text-white w-8 h-8" />
+                  </div>
+                  <span className="text-xl font-bold tracking-tight">SOBUFT GROUP BTP<span className="text-primary">.</span></span>
+                </div>
               <p className="text-white/60 text-sm leading-relaxed mb-6">
                 L'excellence architecturale et technique au cœur de l'Afrique. Nous construisons le Cameroun de demain, un projet à la fois.
               </p>
@@ -793,139 +704,47 @@ export default function App() {
       <AnimatePresence>
         {selectedProjectIndex !== null && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-10 bg-secondary/95 backdrop-blur-2xl">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-white w-full max-w-6xl h-full max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row relative"
-            >
-              {/* Close Button Mobile */}
-              <button 
-                onClick={() => setSelectedProjectIndex(null)}
-                className="absolute top-6 right-6 z-20 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white md:hidden"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              <div className="bg-white w-full max-w-4xl h-fit max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden relative p-8 md:p-16">
+                {/* Close Button */}
+                <button 
+                  onClick={() => setSelectedProjectIndex(null)}
+                  className="absolute top-8 right-8 z-20 w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-secondary hover:bg-gray-200 transition-all"
+                >
+                  <X className="w-6 h-6" />
+                </button>
 
-              {/* Gallery Section */}
-              <div className="w-full md:w-3/5 h-[400px] md:h-full bg-gray-900 relative group/gallery">
-                <AnimatePresence mode="wait">
-                  <motion.img 
-                    key={PROJECTS[selectedProjectIndex].gallery[currentGalleryImageIndex]}
-                    src={PROJECTS[selectedProjectIndex].gallery[currentGalleryImageIndex]}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </AnimatePresence>
-                
-                {/* Gallery Nav Buttons */}
-                <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none opacity-0 group-hover/gallery:opacity-100 transition-opacity">
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentGalleryImageIndex((prev) => 
-                        prev === 0 ? PROJECTS[selectedProjectIndex!].gallery.length - 1 : prev - 1
-                      );
-                    }}
-                    className="pointer-events-auto w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-all active:scale-95"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentGalleryImageIndex((prev) => 
-                        (prev + 1) % PROJECTS[selectedProjectIndex!].gallery.length
-                      );
-                    }}
-                    className="pointer-events-auto w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary transition-all active:scale-95"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </div>
-
-                {/* Gallery Indicators */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                  {PROJECTS[selectedProjectIndex].gallery.map((_, idx) => (
-                    <button 
-                      key={idx}
-                      onClick={() => setCurrentGalleryImageIndex(idx)}
-                      className={`h-1.5 rounded-full transition-all ${idx === currentGalleryImageIndex ? "w-8 bg-primary" : "w-2 bg-white/50 hover:bg-white"}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Info Section */}
-              <div className="flex-1 p-8 md:p-12 overflow-y-auto flex flex-col">
-                <div className="flex justify-between items-start mb-10">
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="bg-primary/10 text-primary text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full">
-                        {PROJECTS[selectedProjectIndex].type}
-                      </span>
-                      <span className="flex items-center gap-1 text-xs text-gray-400 font-bold uppercase tracking-widest">
-                        <MapPin className="w-3 h-3" /> {PROJECTS[selectedProjectIndex].location}
-                      </span>
-                    </div>
-                    <h2 className="text-4xl font-black text-secondary leading-tight">{PROJECTS[selectedProjectIndex].title}</h2>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="bg-primary/10 text-primary text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full">
+                      {PROJECTS[selectedProjectIndex].type}
+                    </span>
+                    <span className="flex items-center gap-1 text-xs text-gray-400 font-bold uppercase tracking-widest">
+                      <MapPin className="w-3 h-3" /> {PROJECTS[selectedProjectIndex].location}
+                    </span>
                   </div>
-                  <button 
-                    onClick={() => setSelectedProjectIndex(null)}
-                    className="hidden md:flex w-12 h-12 bg-gray-50 rounded-full items-center justify-center text-gray-400 hover:text-secondary hover:bg-gray-100 transition-all"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
+                  <h2 className="text-4xl md:text-5xl font-black text-secondary leading-tight mb-10">{PROJECTS[selectedProjectIndex].title}</h2>
+                  
+                  <div className="prose prose-lg text-gray-600 leading-relaxed mb-12">
+                    <p>{PROJECTS[selectedProjectIndex].fullDescription}</p>
+                  </div>
 
-                <div className="space-y-6 text-gray-600 leading-relaxed text-lg mb-12">
-                  <p>{PROJECTS[selectedProjectIndex].fullDescription}</p>
-                </div>
-
-                {/* Navigation Buttons */}
-                <div className="mt-auto pt-8 border-t border-gray-100 flex items-center justify-between gap-4">
-                  {/* Previous Project */}
-                  <div className="flex items-center gap-4">
+                  {/* Navigation */}
+                  <div className="pt-8 border-t border-gray-100 flex items-center justify-between">
                     <button 
-                      onClick={() => {
-                        setSelectedProjectIndex((prev) => 
-                          prev === 0 ? PROJECTS.length - 1 : prev! - 1
-                        );
-                        setCurrentGalleryImageIndex(0);
-                      }}
-                      className="h-16 w-16 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-secondary hover:bg-primary hover:text-white transition-all shadow-sm active:scale-95 group"
+                      onClick={() => setSelectedProjectIndex((prev) => prev === 0 ? PROJECTS.length - 1 : prev! - 1)}
+                      className="flex items-center gap-3 text-secondary font-bold hover:text-primary transition-all"
                     >
-                      <ChevronLeft className="w-8 h-8 group-hover:-translate-x-1 transition-transform" />
+                      <ChevronLeft /> Projet Précédent
                     </button>
-                    <div className="text-left hidden sm:block">
-                      <p className="text-[10px] uppercase font-black tracking-widest text-gray-400 mb-1">Revenir au</p>
-                      <p className="text-sm font-bold text-secondary">Projet Précédent</p>
-                    </div>
-                  </div>
-
-                  {/* Next Project */}
-                  <div className="flex items-center gap-4">
-                    <div className="text-right hidden sm:block">
-                      <p className="text-[10px] uppercase font-black tracking-widest text-gray-400 mb-1">Passer au</p>
-                      <p className="text-sm font-bold text-secondary">Projet Suivant</p>
-                    </div>
                     <button 
-                      onClick={() => {
-                        setSelectedProjectIndex((prev) => (prev! + 1) % PROJECTS.length);
-                        setCurrentGalleryImageIndex(0);
-                      }}
-                      className="h-16 w-16 bg-primary rounded-2xl flex items-center justify-center text-white hover:bg-secondary transition-all shadow-xl shadow-primary/20 active:scale-95 group"
+                      onClick={() => setSelectedProjectIndex((prev) => (prev! + 1) % PROJECTS.length)}
+                      className="flex items-center gap-3 text-secondary font-bold hover:text-primary transition-all"
                     >
-                      <ArrowRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
+                      Projet Suivant <ChevronRight />
                     </button>
                   </div>
                 </div>
               </div>
-            </motion.div>
           </div>
         )}
       </AnimatePresence>
