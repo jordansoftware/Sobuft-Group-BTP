@@ -21,7 +21,7 @@ import {
   ChevronRight,
   ChevronLeft
 } from "lucide-react";
-import { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 
 const SERVICES = [
   {
@@ -108,6 +108,24 @@ export default function App() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
   const [currentGalleryImageIndex, setCurrentGalleryImageIndex] = useState(0);
   const [currentHeroImage, setCurrentHeroImage] = useState(0);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Offset for sticky header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      setIsMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -216,12 +234,16 @@ export default function App() {
               <a 
                 key={item} 
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
+                onClick={(e) => scrollToSection(e, item.toLowerCase().replace(" ", "-"))}
                 className={`text-sm font-medium transition-colors hover:text-primary ${scrolled ? "text-secondary" : "text-white/90"}`}
               >
                 {item}
               </a>
             ))}
-            <button className="bg-primary hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/30">
+            <button 
+              onClick={(e) => scrollToSection(e, "contact")}
+              className="bg-primary hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary/30"
+            >
               Devis Gratuit
             </button>
           </div>
@@ -244,12 +266,15 @@ export default function App() {
                 key={item} 
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
                 className="text-lg font-medium text-secondary hover:text-primary border-b border-gray-100 pb-2"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => scrollToSection(e, item.toLowerCase().replace(" ", "-"))}
               >
                 {item}
               </a>
             ))}
-            <button className="bg-primary text-white w-full py-4 rounded-xl font-bold mt-4 shadow-lg">
+            <button 
+              onClick={(e) => scrollToSection(e, "contact")}
+              className="bg-primary text-white w-full py-4 rounded-xl font-bold mt-4 shadow-lg"
+            >
               Demander un Devis
             </button>
           </motion.div>
@@ -300,10 +325,16 @@ export default function App() {
               Expertise technique de pointe et fiabilité sans compromis pour tous vos projets de construction et de génie civil sur l'ensemble du territoire camerounais.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-primary hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all group active:scale-95 shadow-xl shadow-primary/20">
+              <button 
+                onClick={(e) => scrollToSection(e, "contact")}
+                className="bg-primary hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all group active:scale-95 shadow-xl shadow-primary/20"
+              >
                 Lancer mon projet <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg transition-all active:scale-95">
+              <button 
+                onClick={(e) => scrollToSection(e, "projets")}
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg transition-all active:scale-95"
+              >
                 Voir nos réalisations
               </button>
             </div>
@@ -720,10 +751,10 @@ export default function App() {
             <div>
               <h4 className="font-bold text-lg mb-8">Navigation</h4>
               <ul className="space-y-4 text-white/50 text-sm">
-                <li><a href="#accueil" className="hover:text-primary transition-colors">Accueil</a></li>
-                <li><a href="#services" className="hover:text-primary transition-colors">Nos Services</a></li>
-                <li><a href="#projets" className="hover:text-primary transition-colors">Réalisations</a></li>
-                <li><a href="#equipe" className="hover:text-primary transition-colors">Notre Équipe</a></li>
+                <li><a href="#accueil" onClick={(e) => scrollToSection(e, "accueil")} className="hover:text-primary transition-colors">Accueil</a></li>
+                <li><a href="#services" onClick={(e) => scrollToSection(e, "services")} className="hover:text-primary transition-colors">Nos Services</a></li>
+                <li><a href="#projets" onClick={(e) => scrollToSection(e, "projets")} className="hover:text-primary transition-colors">Réalisations</a></li>
+                <li><a href="#equipe" onClick={(e) => scrollToSection(e, "equipe")} className="hover:text-primary transition-colors">Notre Équipe</a></li>
               </ul>
             </div>
 
