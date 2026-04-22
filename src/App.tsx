@@ -66,10 +66,12 @@ const PROJECTS = [
     fullDescription: "Ce projet prestigieux situé à Nkolbison, Yaoundé, illustre parfaitement le savoir-faire complet de SOBUFT GROUP BTP. De l'étude architecturale initiale à la réalisation finale clef en main, ce duplex moderne a été conçu pour offrir un cadre de vie luxueux et sécurisé. La phase d'étude a porté sur l'optimisation des volumes et de la lumière naturelle, tandis que la réalisation a mobilisé nos meilleures équipes de génie civil pour garantir une solidité structurelle exemplaire selon les normes les plus strictes."
   },
   {
-    title: "Centre Commercial Littoral",
-    location: "Akwa, Douala",
-    type: "Commercial",
-    fullDescription: "Ce centre commercial de 5 étages redéfinit le shopping à Douala. Situé stratégiquement à Akwa, il offre des espaces modulables pour les commerces de détail, des bureaux d'affaires et une aire de restauration. Notre expertise en génie civil a permis de relever les défis de sol spécifiques à la zone littorale."
+    title: "Projet duplex (Étude & Réalisation)",
+    location: "Bertoua",
+    type: "Résidentiel",
+    image: "https://sobuftgroupbtp.com/projet-duplex-nyanga/projet-duplex-nyanga01.jpeg",
+    gallery: Array.from({ length: 18 }, (_, i) => `https://sobuftgroupbtp.com/projet-duplex-nyanga/projet-duplex-nyanga${String(i + 1).padStart(2, '0')}.jpeg`),
+    fullDescription: "Ce projet de duplex résidentiel à Bertoua, réalisé pour le compte de M. Charly Nyanga, témoigne de l'expertise de SOBUFT GROUP BTP dans l'Est du Cameroun. Nous avons pris en charge l'intégralité du cycle de vie du projet, depuis les études techniques et architecturales jusqu'à la construction finale. Le design allie élégance moderne et robustesse, avec une attention particulière portée aux finitions haut de gamme et à l'intégration harmonieuse dans le paysage urbain de Bertoua. Une réalisation livrée avec brio, respectant les exigences de confort et de durabilité de notre client."
   },
   {
     title: "Pont de la Sanaga (Rénovation)",
