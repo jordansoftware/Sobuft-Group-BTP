@@ -53,9 +53,10 @@ const PROJECTS = [
     title: "Immeuble R+3 avec terrasse accessible",
     location: "Logpom, Douala",
     type: "Résidentiel",
+    client: "Michael Ngadeu-Ngadjui",
     image: "https://sobuftgroupbtp.com/projet-ngadeu/projet-ngadeu01.webp",
     gallery: Array.from({ length: 24 }, (_, i) => `https://sobuftgroupbtp.com/projet-ngadeu/projet-ngadeu${String(i + 1).padStart(2, '0')}.webp`),
-    fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala), consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
+    fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala) pour l'international camerounais Michael Ngadeu-Ngadjui, consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
   },
   {
     title: "Projet duplex (Étude & Réalisation)",
@@ -69,6 +70,7 @@ const PROJECTS = [
     title: "Projet duplex (Étude & Réalisation)",
     location: "Bertoua",
     type: "Résidentiel",
+    client: "Charly Nyanga",
     image: "https://sobuftgroupbtp.com/projet-duplex-nyanga/projet-duplex-nyanga01.jpeg",
     gallery: Array.from({ length: 18 }, (_, i) => `https://sobuftgroupbtp.com/projet-duplex-nyanga/projet-duplex-nyanga${String(i + 1).padStart(2, '0')}.jpeg`),
     fullDescription: "Ce projet de duplex résidentiel à Bertoua, réalisé pour le compte de M. Charly Nyanga, témoigne de l'expertise de SOBUFT GROUP BTP dans l'Est du Cameroun. Nous avons pris en charge l'intégralité du cycle de vie du projet, depuis les études techniques et architecturales jusqu'à la construction finale. Le design allie élégance moderne et robustesse, avec une attention particulière portée aux finitions haut de gamme et à l'intégration harmonieuse dans le paysage urbain de Bertoua. Une réalisation livrée avec brio, respectant les exigences de confort et de durabilité de notre client."
@@ -463,6 +465,12 @@ export default function App() {
                       <MapPin className="w-3 h-3" /> {project.location}
                     </span>
                   </div>
+                  {project.client && (
+                    <div className="flex items-center gap-2 mb-2">
+                      <Users className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-bold text-white/90 uppercase tracking-widest">Maître d'Ouvrage: {project.client}</span>
+                    </div>
+                  )}
                   <h3 className="text-3xl font-black group-hover:text-primary transition-colors mb-2">{project.title}</h3>
                 </div>
               </motion.div>
@@ -878,6 +886,12 @@ export default function App() {
                         <MapPin className="w-3 h-3" /> {PROJECTS[selectedProjectIndex].location}
                       </span>
                     </div>
+                    {PROJECTS[selectedProjectIndex].client && (
+                      <div className="flex items-center gap-2 mb-3">
+                        <Users className="w-4 h-4 text-primary" />
+                        <p className="text-xs font-bold text-secondary uppercase tracking-widest">Maître d'Ouvrage: <span className="text-primary">{PROJECTS[selectedProjectIndex].client}</span></p>
+                      </div>
+                    )}
                     <h2 className="text-4xl font-black text-secondary leading-tight">{PROJECTS[selectedProjectIndex].title}</h2>
                   </div>
                   <button 
