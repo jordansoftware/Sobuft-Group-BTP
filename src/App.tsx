@@ -50,6 +50,7 @@ const HERO_IMAGES = Array.from({ length: 8 }, (_, i) => `https://sobuftgroupbtp.
 
 const PROJECTS = [
   {
+    status: "completed",
     title: "Immeuble R+3 avec terrasse accessible",
     location: "Logpom, Douala",
     type: "Résidentiel",
@@ -59,6 +60,7 @@ const PROJECTS = [
     fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala) pour l'international camerounais Michael Ngadeu-Ngadjui, consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
   },
   {
+    status: "completed",
     title: "Projet duplex (Étude & Réalisation)",
     location: "Nkolbison, Yaoundé",
     type: "Résidentiel",
@@ -67,6 +69,7 @@ const PROJECTS = [
     fullDescription: "Ce projet prestigieux situé à Nkolbison, Yaoundé, illustre parfaitement le savoir-faire complet de SOBUFT GROUP BTP. De l'étude architecturale initiale à la réalisation finale clef en main, ce duplex moderne a été conçu pour offrir un cadre de vie luxueux et sécurisé. La phase d'étude a porté sur l'optimisation des volumes et de la lumière naturelle, tandis que la réalisation a mobilisé nos meilleures équipes de génie civil pour garantir une solidité structurelle exemplaire selon les normes les plus strictes."
   },
   {
+    status: "completed",
     title: "Projet duplex (Étude & Réalisation)",
     location: "Bertoua",
     type: "Résidentiel",
@@ -76,16 +79,30 @@ const PROJECTS = [
     fullDescription: "Ce projet de duplex résidentiel à Bertoua, réalisé pour le compte de M. Charly Nyanga, témoigne de l'expertise de SOBUFT GROUP BTP dans l'Est du Cameroun. Nous avons pris en charge l'intégralité du cycle de vie du projet, depuis les études techniques et architecturales jusqu'à la construction finale. Le design allie élégance moderne et robustesse, avec une attention particulière portée aux finitions haut de gamme et à l'intégration harmonieuse dans le paysage urbain de Bertoua. Une réalisation livrée avec brio, respectant les exigences de confort et de durabilité de notre client."
   },
   {
-    title: "Pont de la Sanaga (Rénovation)",
-    location: "Edéa",
-    type: "Infrastructure",
-    fullDescription: "Un projet d'envergure nationale consistant en la réfection structurelle complète du pont historique sur la Sanaga. Nous avons utilisé des techniques de renforcement en composites et une protection anticorrosion avancée pour assurer la pérennité de cet axe vital pour l'économie camerounaise."
+    status: "completed",
+    title: "Projet sous-sol R+2 avec terrasse accessible",
+    location: "Logpom, Douala",
+    type: "Résidentiel",
+    client: "Georges Constant Mandjeck",
+    image: "https://sobuftgroupbtp.com/projet-georges/projet-georges01.jpeg",
+    gallery: Array.from({ length: 18 }, (_, i) => `https://sobuftgroupbtp.com/projet-georges/projet-georges01.jpeg`),
+    fullDescription: "Situé dans le quartier de Logpom à Douala, ce projet architectural d'exception réalisé pour l'ancien Lion Indomptable Georges Constant Mandjeck se distingue par sa conception moderne et fonctionnelle. L'ouvrage comprend un sous-sol technique, un bâtiment principal R+2 et une vaste terrasse accessible offrant une vue imprenable. SOBUFT GROUP BTP a assuré l'étude technique approfondie et la réalisation complète, mettant l'accent sur la qualité des matériaux et la précision des finitions pour répondre aux exigences de prestige de notre client."
   },
   {
+    status: "completed",
     title: "Villa Moderne Kribi",
     location: "Cité des Plages, Kribi",
     type: "Luxe",
     fullDescription: "Une villa balnéaire d'exception alliant design minimaliste et ouverture sur l'océan. Ce projet a mis l'accent sur l'utilisation de matériaux locaux et la durabilité environnementale. Sobuft Group BTP a réalisé ici une véritable synthèse entre luxe et respect de la nature environnante."
+  },
+  {
+    status: "ongoing",
+    title: "Projet R+4 (Essos)",
+    location: "Lycée Bilingue d'Essos, Yaoundé",
+    type: "Résidentiel",
+    image: "https://sobuftgroupbtp.com/projet-r4-essos/projet-r4-essos01.jpeg",
+    gallery: Array.from({ length: 16 }, (_, i) => `https://sobuftgroupbtp.com/projet-r4-essos/projet-r4-essos${String(i + 1).padStart(2, '0')}.jpeg`),
+    fullDescription: "Actuellement en phase de gros œuvre, ce projet de construction d'un immeuble R+4 situé au lieu-dit Lycée Bilingue d'Essos à Yaoundé représente un défi technique majeur. SOBUFT GROUP BTP assure la maîtrise d'œuvre et l'exécution complète. L'édifice est conçu pour accueillir des logements modernes et spacieux, avec une structure optimisée pour la durabilité et la sécurité. Nos équipes sont mobilisées quotidiennement pour garantir un avancement conforme au planning rigoureux établi pour cette réalisation urbaine d'envergure."
   }
 ];
 
@@ -236,11 +253,11 @@ export default function App() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {["Accueil", "Services", "Projets", "Equipe", "Contact"].map((item) => (
+            {["Accueil", "Services", "Chantiers", "Réalisations", "Equipe", "Contact"].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
-                onClick={(e) => scrollToSection(e, item.toLowerCase().replace(" ", "-"))}
+                onClick={(e) => scrollToSection(e, item.toLowerCase().replace(" ", "-").replace("réalisations", "projets"))}
                 className={`text-sm font-medium transition-colors hover:text-primary ${scrolled ? "text-secondary" : "text-white/90"}`}
               >
                 {item}
@@ -267,12 +284,12 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className="absolute top-full left-0 w-full bg-white shadow-xl p-6 flex flex-col gap-4 border-t"
           >
-            {["Accueil", "Services", "Projets", "Equipe", "Contact"].map((item) => (
+            {["Accueil", "Services", "Chantiers", "Réalisations", "Equipe", "Contact"].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
                 className="text-lg font-medium text-secondary hover:text-primary border-b border-gray-100 pb-2"
-                onClick={(e) => scrollToSection(e, item.toLowerCase().replace(" ", "-"))}
+                onClick={(e) => scrollToSection(e, item.toLowerCase().replace(" ", "-").replace("réalisations", "projets"))}
               >
                 {item}
               </a>
@@ -413,30 +430,99 @@ export default function App() {
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Ongoing Projects Section */}
+      <section id="chantiers" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-xl">
+              <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Chantiers en cours</h2>
+              <p className="text-4xl md:text-5xl font-black text-secondary leading-tight">
+                Nos équipes sont actuellement sur le terrain.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-emerald-500 font-bold bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100 italic text-sm">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+              Mise à jour en temps réel
+            </div>
+          </div>
+
+          {PROJECTS.filter(p => p.status === "ongoing").length > 0 ? (
+            <div className="grid md:grid-cols-2 gap-8">
+              {PROJECTS.filter(p => p.status === "ongoing").map((project, i) => (
+                <motion.div 
+                  key={project.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  onClick={() => {
+                    setSelectedProjectIndex(PROJECTS.indexOf(project));
+                    setCurrentGalleryImageIndex(0);
+                  }}
+                  className="group relative overflow-hidden rounded-[2.5rem] bg-gray-100 aspect-[16/10] cursor-pointer border border-gray-100"
+                >
+                  {project.image ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gray-200 flex flex-col items-center justify-center p-12 text-center">
+                      <Construction className="w-24 h-24 text-gray-400 mb-6" />
+                      <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Visuel en cours de chargement...</p>
+                    </div>
+                  )}
+                  <div className="absolute top-6 right-6">
+                    <span className="bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">
+                      En cours
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-10 flex flex-col justify-end">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="bg-primary text-[10px] uppercase font-black tracking-widest px-2 py-1 rounded">
+                        {project.type}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs text-white/70 font-medium italic">
+                        <MapPin className="w-3 h-3" /> {project.location}
+                      </span>
+                    </div>
+                    <h3 className="text-3xl font-black text-white group-hover:text-primary transition-colors mb-2">{project.title}</h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-gray-50 rounded-[3rem] p-16 text-center border-2 border-dashed border-gray-200">
+               <Construction className="w-20 h-20 text-gray-300 mx-auto mb-6" />
+               <p className="text-gray-500 font-bold text-xl">Tous nos chantiers actuels ont été récemment finalisés.</p>
+               <p className="text-gray-400 mt-2">D'autres projets débutent très prochainement.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Projects Grid (Completed) */}
       <section id="projets" className="py-32 bg-secondary text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-xl">
-              <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Portefeuille de Réalisations</h2>
+              <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Réalisations terminées</h2>
               <p className="text-4xl md:text-5xl font-black leading-tight">
-                Découvrez nos projets emblématiques au Cameroun.
+                Archives de nos succès bâtis.
               </p>
             </div>
-            <button className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all pb-2 border-b-2 border-primary/30">
-              Voir tout le catalogue <ArrowRight className="w-5 h-5" />
-            </button>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {PROJECTS.map((project, i) => (
+            {PROJECTS.filter(p => !p.status || p.status === "completed").map((project, i) => (
               <motion.div 
                 key={project.title}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 onClick={() => {
-                  setSelectedProjectIndex(i);
+                  setSelectedProjectIndex(PROJECTS.indexOf(project));
                   setCurrentGalleryImageIndex(0);
                 }}
                 className="group relative overflow-hidden rounded-[2.5rem] bg-gray-900 aspect-[16/10] cursor-pointer"
