@@ -58,10 +58,12 @@ const PROJECTS = [
     fullDescription: "Ce projet d'envergure, initié en 2018 à Logpom (Douala), consiste en la construction d'un immeuble résidentiel R+3. Sa caractéristique majeure est une terrasse accessible offrant une vue panoramique sur les environs. Le déploiement a suivi une planification rigoureuse, de la fondation aux finitions architecturales modernes, garantissant confort et durabilité."
   },
   {
-    title: "Résidence Emergence",
-    location: "Bastos, Yaoundé",
+    title: "Projet duplex (Étude & Réalisation)",
+    location: "Nkolbison, Yaoundé",
     type: "Résidentiel",
-    fullDescription: "La Résidence Emergence est un complexe résidentiel de luxe situé au cœur de Bastos. Ce projet phare de Sobuft Group BTP combine élégance architecturale et confort moderne. Il comprend 12 appartements spacieux équipés de systèmes intelligents, un rooftop panoramique et une infrastructure de sécurité conforme aux standards internationaux."
+    image: "https://sobuftgroupbtp.com/projet-duplex-nkolbison/projet-duplex-nkolbison01.jpeg",
+    gallery: Array.from({ length: 20 }, (_, i) => `https://sobuftgroupbtp.com/projet-duplex-nkolbison/projet-duplex-nkolbison${String(i + 1).padStart(2, '0')}.jpeg`),
+    fullDescription: "Ce projet prestigieux situé à Nkolbison, Yaoundé, illustre parfaitement le savoir-faire complet de SOBUFT GROUP BTP. De l'étude architecturale initiale à la réalisation finale clef en main, ce duplex moderne a été conçu pour offrir un cadre de vie luxueux et sécurisé. La phase d'étude a porté sur l'optimisation des volumes et de la lumière naturelle, tandis que la réalisation a mobilisé nos meilleures équipes de génie civil pour garantir une solidité structurelle exemplaire selon les normes les plus strictes."
   },
   {
     title: "Centre Commercial Littoral",
